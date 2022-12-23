@@ -1,5 +1,8 @@
 package Modelo.Entidades;
 
+import Modelo.Excecoes.LimiteSaqueException;
+import Modelo.Excecoes.SaldoException;
+
 public class Conta {
 
 	private Integer numero;
@@ -51,6 +54,11 @@ public class Conta {
 	}
 	
 	public void saque(Double quantia) {
+		if (quantia > limiteDeSaque) {
+			throw new LimiteSaqueException("Erro no saque: Limite de saque Excedido!");
+		} if (quantia > saldo) {
+			throw new SaldoException("Erro no saque: Saldo insufuciente!");
+		}
 		saldo -= quantia;
 	}
 	

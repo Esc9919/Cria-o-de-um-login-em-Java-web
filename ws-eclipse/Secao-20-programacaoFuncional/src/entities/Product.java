@@ -29,10 +29,34 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	
+	public static boolean staticProductPredicate(Product p) {
+		return p.getPrice() >= 100;
+	}
+	
+	public boolean nonStaticProductPredicate() {
+		return price >= 100;
+	}
+	
+	public static void staticPriceUpdate(Product p) {
+		p.setPrice(p.getPrice() * 1.1);
+	}
+	
+	public void nonStaticPriceUpdate() {
+		price = price * 1.1;
+	}
+	
+	public static String staticUpperCasename(Product p) {
+		return p.getName().toUpperCase();
+	}
+	
+	public String nonStaticUpperCasename() {
+		return name.toUpperCase();
+	}
 
 	@Override
 	public String toString() {
-		return "Product [name=" + name + ", price=" + price + "]";
+		return name + ", " + String.format("%.2f", price);
 	}
 
 }
